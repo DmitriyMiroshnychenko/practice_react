@@ -9,11 +9,20 @@ export default class App extends React.Component {
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    const userCount = localStorage.getItem("timer");
+    if (userCount) {
+      this.setState({ count: +userCount });
+    }
+  }
 
-  componentDidUpdate() {}
+  componentDidUpdate() {
+    localStorage.setItem("timer", this.state.count);
+  }
 
-  componentWillUnmount() {}
+  componentWillUnmount() {
+    clearInterval(this.counterId);
+  }
 
   handleStart = () => {
     this.setState({ isCounting: true });
