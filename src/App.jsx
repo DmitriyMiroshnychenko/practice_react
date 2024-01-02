@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Posts } from "./components/Posts";
 
 class App extends Component {
   state = {
@@ -10,12 +11,15 @@ class App extends Component {
     ],
   };
 
+  handleSomething = () => {
+    console.log("App.jsx setState update");
+  };
+
   render() {
+    const { posts } = this.state;
     return (
       <div className="App">
-        {this.state.posts.map((post) => (
-          <h2 key={post.id}>{post.name}</h2>
-        ))}
+        <Posts posts={posts} cb={this.handleSomething} />
       </div>
     );
   }
