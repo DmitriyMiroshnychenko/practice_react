@@ -15,6 +15,24 @@ export default class App extends React.Component {
 
   componentWillUnmount() {}
 
+  handleStart = () => {
+    this.setState({ isCounting: true });
+
+    this.counterId = setInterval(() => {
+      this.setState({ count: this.state.count + 1 });
+    }, 1000);
+  };
+
+  handleStop = () => {
+    this.setState({ isCounting: false });
+    clearInterval(this.counterId);
+  };
+
+  handleReset = () => {
+    this.setState({ isCounting: false, count: 0 });
+    clearInterval(this.counterId);
+  };
+
   render() {
     return (
       <div className="App">
