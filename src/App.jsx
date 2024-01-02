@@ -1,45 +1,32 @@
-import React, { Component } from "react";
+import React from "react";
 
-class App extends Component {
-  state = {
-    posts: [],
-    loading: true,
-    comments: [],
-  };
-
-  componentDidMount() {
-    console.log("componentDidMount");
-    fetch("http://jsonplaceholder.typicode.com/posts")
-      .then((response) => response.json())
-      .then((data) => this.setState({ posts: data, loading: false }));
-
-    this.timerId = setInterval(() => {
-      this.setState({ loading: true });
-      fetch("http://jsonplaceholder.typicode.com/comments")
-        .then((response) => response.json())
-        .then((data) => this.setState({ comments: data }));
-    }, 3000);
+export default class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      count: 0,
+      isCounting: false,
+    };
   }
 
-  componentDidUpdate() {
-    console.log("componentDidUpdate");
-  }
+  componentDidMount() {}
 
-  componentWillUnmount() {
-    clearInterval(this.timerId);
-  }
+  componentDidUpdate() {}
+
+  componentWillUnmount() {}
 
   render() {
     return (
       <div className="App">
-        {this.state.loading ? (
-          <h3>Loading...</h3>
+        <h1>React Timer</h1>
+        <h3>{this.state.count}</h3>
+        {!this.state.isCounting ? (
+          <button onClick={this.handleStart}>Start</button>
         ) : (
-          <h3>{this.state.posts.length} was loaded</h3>
+          <button onClick={this.handleStop}>Stop</button>
         )}
+        <button onClick={this.handleReset}>Reset</button>
       </div>
     );
   }
 }
-
-export default App;
