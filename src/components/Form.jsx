@@ -3,13 +3,14 @@ import React from "react";
 class Form extends React.Component {
   state = {
     firstName: "",
+    email: "",
   };
   handleChange = (event) => {
-    this.setState({ firstName: event.target.value });
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
-    const { firstName } = this.state;
+    const { firstName, email } = this.state;
     return (
       <div>
         <input
@@ -17,6 +18,13 @@ class Form extends React.Component {
           name="firstName"
           placeholder="firstName"
           value={firstName}
+          onChange={this.handleChange}
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="email"
+          value={email}
           onChange={this.handleChange}
         />
       </div>
