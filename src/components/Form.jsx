@@ -15,6 +15,14 @@ class Form extends React.Component {
     }
   };
 
+  validateEmail = () => {
+    if (
+      !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})*$/.test(this.state.email)
+    ) {
+      alert("is not valid");
+    }
+  };
+
   render() {
     const { firstName, email } = this.state;
     return (
@@ -33,6 +41,7 @@ class Form extends React.Component {
           placeholder="email"
           value={email}
           onChange={this.handleChange}
+          onBlur={this.validateEmail}
         />
       </div>
     );
