@@ -4,6 +4,8 @@ class Form extends React.Component {
   state = {
     firstName: "",
     email: "",
+    message: "",
+    select: "",
   };
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
@@ -24,7 +26,7 @@ class Form extends React.Component {
   };
 
   render() {
-    const { firstName, email } = this.state;
+    const { firstName, email, message, select } = this.state;
     return (
       <div>
         <input
@@ -43,6 +45,15 @@ class Form extends React.Component {
           onChange={this.handleChange}
           onBlur={this.validateEmail}
         />
+        <br />
+        <textarea name="message" value={message} onChange={this.handleChange} />
+        <br />
+        <select name="select" value={select} onChange={this.handleChange}>
+          <option value="disabled"></option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
       </div>
     );
   }
