@@ -7,6 +7,7 @@ class Form extends React.Component {
     message: "",
     select: "",
     subscription: false,
+    gender: "",
   };
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
@@ -31,7 +32,8 @@ class Form extends React.Component {
   };
 
   render() {
-    const { firstName, email, message, select, subscription } = this.state;
+    const { firstName, email, message, select, subscription, gender } =
+      this.state;
     return (
       <div>
         <input
@@ -69,6 +71,23 @@ class Form extends React.Component {
           />
           Subscription
         </label>
+        <br />
+        <input
+          type="radio"
+          name="gender"
+          value="male"
+          onChange={this.handleChange}
+          checked={gender === "male"}
+        />
+        Male
+        <input
+          type="radio"
+          name="gender"
+          value="female"
+          onChange={this.handleChange}
+          checked={gender === "female"}
+        />
+        Female
       </div>
     );
   }
